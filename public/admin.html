@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin - Habit Tracker</title>
+
+  <link rel="stylesheet" href="style.css?v=6">
+</head>
+
+<body>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-brand">
+
+        <div class="brand-icon">
+          H
+        </div>
+
+        <div>
+          <h2>Habit Tracker</h2>
+          <span>Build better habits</span>
+        </div>
+
+      </div>
+
+      <nav class="sidebar-nav">
+
+        <a href="dashboard.html" class="nav-item">
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a href="tracking.html" class="nav-item">
+          <span>✓</span>
+          Tracking
+        </a>
+
+        <a href="history.html" class="nav-item">
+          <span>▣</span>
+          Riwayat
+        </a>
+
+        <a href="category.html" class="nav-item">
+          <span>◆</span>
+          Kategori
+        </a>
+
+        <a href="profile.html" class="nav-item">
+          <span>●</span>
+          Profil
+        </a>
+
+        <a href="admin.html" class="nav-item active" id="admin-nav">
+          <span>⚙</span>
+          Admin
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <button
+          class="logout-button"
+          id="logout-button"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <div>
+
+          <div class="page-label">
+            ADMINISTRATION
+          </div>
+
+          <h1>Manajemen User</h1>
+
+        </div>
+
+        <div class="user-mini">
+
+          <div
+            class="user-avatar"
+            id="user-avatar"
+          >
+            N
+          </div>
+
+          <div>
+
+            <strong id="user-name">
+              Loading...
+            </strong>
+
+            <span id="user-role">
+              Administrator
+            </span>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <!-- ADMIN HEADER -->
+      <section class="admin-welcome">
+
+        <div>
+
+          <span class="welcome-label">
+            ADMIN PANEL
+          </span>
+
+          <h2>
+            Kelola Pengguna
+          </h2>
+
+          <p>
+            Kelola akun dan role pengguna
+            Habit Tracker.
+          </p>
+
+        </div>
+
+        <div class="admin-icon">
+          ⚙
+        </div>
+
+      </section>
+
+
+      <!-- USER LIST -->
+      <section class="admin-section">
+
+        <div class="section-title">
+
+          <div>
+            <span>USER MANAGEMENT</span>
+            <h2>Daftar Pengguna</h2>
+          </div>
+
+          <div class="admin-count">
+            Total:
+            <strong id="user-count">0</strong>
+          </div>
+
+        </div>
+
+
+        <div
+          class="admin-user-list"
+          id="user-list"
+        >
+
+          <p class="loading-text">
+            Memuat pengguna...
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script src="admin.js?v=1"></script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+.DS_Store
+
+# File pengujian API
+login.json
+profile.json
+category.json
+update-category.json
+update-log.json
+
+# File pengujian API di src
+src/cookies.txt
+src/habit.json
+src/log.json
+src/update-habit.json

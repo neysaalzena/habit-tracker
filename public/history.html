@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Riwayat - Habit Tracker</title>
+
+  <link rel="stylesheet" href="style.css?v=6">
+</head>
+
+<body>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div class="sidebar-brand">
+
+        <div class="brand-icon">
+          H
+        </div>
+
+        <div>
+          <h2>Habit Tracker</h2>
+          <span>Build better habits</span>
+        </div>
+
+      </div>
+
+
+      <nav class="sidebar-nav">
+
+        <a href="dashboard.html" class="nav-item">
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a href="tracking.html" class="nav-item">
+          <span>✓</span>
+          Tracking
+        </a>
+
+        <a href="history.html" class="nav-item active">
+          <span>▣</span>
+          Riwayat
+        </a>
+
+        <a href="#" class="nav-item" id="category-nav">
+          <span>◆</span>
+          Kategori
+        </a>
+
+        <a href="#" class="nav-item" id="profile-nav">
+          <span>●</span>
+          Profil
+        </a>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <button
+          class="logout-button"
+          id="logout-button"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+      <header class="topbar">
+
+        <div>
+
+          <div class="page-label">
+            HABIT TRACKER
+          </div>
+
+          <h1>Riwayat</h1>
+
+        </div>
+
+
+        <div class="user-mini">
+
+          <div
+            class="user-avatar"
+            id="user-avatar"
+          >
+            N
+          </div>
+
+          <div>
+
+            <strong id="user-name">
+              Loading...
+            </strong>
+
+            <span id="user-role">
+              User
+            </span>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <!-- HEADER -->
+
+      <section class="history-header">
+
+        <div>
+
+          <span class="section-label">
+            ACTIVITY HISTORY
+          </span>
+
+          <h2>Riwayat Aktivitas</h2>
+
+          <p>
+            Lihat catatan kebiasaan yang telah dilakukan.
+          </p>
+
+        </div>
+
+
+        <div class="history-filter">
+
+          <label for="history-date">
+            Filter Tanggal
+          </label>
+
+          <input
+            type="date"
+            id="history-date"
+          >
+
+          <button
+            type="button"
+            id="reset-date"
+          >
+            Semua
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- MESSAGE -->
+
+      <p
+        id="history-message"
+        class="history-message"
+      ></p>
+
+
+      <!-- HISTORY LIST -->
+
+      <section>
+
+        <div
+          id="history-list"
+          class="history-list"
+        >
+
+          <p class="loading-text">
+            Memuat riwayat...
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script src="history.js?v=1"></script>
+
+</body>
+
+</html>

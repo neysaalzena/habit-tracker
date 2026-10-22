@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Habit Tracker - Login</title>
+
+  <link rel="stylesheet" href="style.css?v=3">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6c5ce7">
+</head>
+
+<body>
+
+  <main class="auth-container">
+
+    <div class="auth-card">
+
+      <!-- LOGO / BRAND -->
+      <div class="brand">
+
+        <div class="brand-logo">
+          H
+        </div>
+
+        <h1>
+          Habit Tracker
+        </h1>
+
+        <p>
+          Bangun kebiasaan baik,<br>
+          pantau progres setiap hari.
+        </p>
+
+      </div>
+
+
+      <!-- LOGIN -->
+      <section id="login-section">
+
+        <h2>
+          Selamat Datang 👋
+        </h2>
+
+        <p class="form-description">
+          Login untuk melanjutkan ke Habit Tracker.
+        </p>
+
+
+        <form id="login-form">
+
+          <div class="form-group">
+
+            <label for="login-email">
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="login-email"
+              placeholder="Masukkan email"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="login-password">
+              Password
+            </label>
+
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Masukkan password"
+              autocomplete="current-password"
+              required
+            >
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="auth-button"
+          >
+            Login
+          </button>
+
+        </form>
+
+
+        <p
+          id="login-message"
+          class="message"
+        ></p>
+
+
+        <div class="switch">
+
+          <span>
+            Belum punya akun?
+          </span>
+
+          <button
+            type="button"
+            id="show-register"
+          >
+            Daftar sekarang
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- REGISTER -->
+      <section
+        id="register-section"
+        class="hidden"
+      >
+
+        <h2>
+          Buat Akun ✨
+        </h2>
+
+        <p class="form-description">
+          Buat akun untuk mulai membangun kebiasaan.
+        </p>
+
+
+        <form id="register-form">
+
+          <div class="form-group">
+
+            <label for="register-name">
+              Nama
+            </label>
+
+            <input
+              type="text"
+              id="register-name"
+              placeholder="Masukkan nama"
+              autocomplete="name"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="register-email">
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="register-email"
+              placeholder="Masukkan email"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="register-password">
+              Password
+            </label>
+
+            <input
+              type="password"
+              id="register-password"
+              placeholder="Masukkan password"
+              autocomplete="new-password"
+              required
+            >
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="auth-button"
+          >
+            Daftar
+          </button>
+
+        </form>
+
+
+        <p
+          id="register-message"
+          class="message"
+        ></p>
+
+
+        <div class="switch">
+
+          <span>
+            Sudah punya akun?
+          </span>
+
+          <button
+            type="button"
+            id="show-login"
+          >
+            Kembali ke Login
+          </button>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- INFORMASI SAMPING -->
+    <div class="auth-info">
+
+      <div class="info-content">
+
+        <span class="info-label">
+          BUILD BETTER HABITS
+        </span>
+
+
+        <h2>
+          Satu kebiasaan kecil,
+          <br>
+          perubahan besar.
+        </h2>
+
+
+        <p>
+          Catat aktivitas harian, pantau perkembangan,
+          dan bangun rutinitas yang lebih konsisten.
+        </p>
+
+
+        <div class="info-features">
+
+          <div class="feature">
+
+            <span>
+              ✓
+            </span>
+
+            <p>
+              Kelola kebiasaan harian
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <span>
+              ✓
+            </span>
+
+            <p>
+              Pantau progres
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <span>
+              ✓
+            </span>
+
+            <p>
+              Lihat riwayat aktivitas
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Habit Tracker",
+  "short_name": "Habit Tracker",
+  "description": "Aplikasi untuk mencatat dan memantau kebiasaan sehari-hari.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#6c5ce7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

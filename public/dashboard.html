@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard - Habit Tracker</title>
+
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+
+<body>
+
+  <div class="app-layout">
+
+    <aside class="sidebar">
+
+      <div class="sidebar-brand">
+
+        <div class="brand-icon">
+          H
+        </div>
+
+        <div>
+          <h2>Habit Tracker</h2>
+          <span>Build better habits</span>
+        </div>
+
+      </div>
+
+      <nav class="sidebar-nav">
+
+        <a href="dashboard.html" class="nav-item active">
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a href="tracking.html" class="nav-item">
+          <span>✓</span>
+          Tracking
+        </a>
+
+        <a href="history.html" class="nav-item">
+          <span>▣</span>
+          Riwayat
+        </a>
+
+        <a href="category.html" class="nav-item" id="category-nav">
+          <span>◆</span>
+          Kategori
+        </a>
+
+        <a href="profile.html" class="nav-item" id="profile-nav">
+          <span>●</span>
+          Profil
+        </a>
+
+        <a href="admin.html" class="nav-item" id="admin-nav">
+          <span>⚙</span>
+          Admin
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <button
+          class="logout-button"
+          id="logout-button"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+      <header class="topbar">
+
+        <div>
+
+          <div class="page-label">
+            DASHBOARD
+          </div>
+
+          <h1>Overview</h1>
+
+        </div>
+
+        <div class="user-mini">
+
+          <div
+            class="user-avatar"
+            id="user-avatar"
+          >
+            N
+          </div>
+
+          <div>
+
+            <strong id="user-name">
+              Loading...
+            </strong>
+
+            <span id="user-role">
+              User
+            </span>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <section class="welcome-card">
+
+        <div>
+
+          <div class="welcome-label">
+            HABIT TRACKER
+          </div>
+
+          <h2 id="welcome-name">
+            Selamat datang 👋
+          </h2>
+
+          <p>
+            Bangun kebiasaan baik dan pantau
+            perkembanganmu setiap hari.
+          </p>
+
+        </div>
+
+        <div class="welcome-decoration">
+          ✓
+        </div>
+
+      </section>
+
+
+      <section class="stats-section">
+
+        <div class="section-title">
+
+          <div>
+            <span>OVERVIEW</span>
+            <h2>Progress Saya</h2>
+          </div>
+
+        </div>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+
+            <div class="stat-icon purple">
+              H
+            </div>
+
+            <div>
+              <span>Total Habit</span>
+              <strong id="total-habits">0</strong>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon blue">
+              ≡
+            </div>
+
+            <div>
+              <span>Total Log</span>
+              <strong id="total-logs">0</strong>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon green">
+              ✓
+            </div>
+
+            <div>
+              <span>Selesai</span>
+              <strong id="completed-logs">0</strong>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon orange">
+              %
+            </div>
+
+            <div>
+              <span>Progress</span>
+              <strong id="completion-rate">0%</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="habit-section">
+
+        <div class="habit-title">
+
+          <div class="section-title">
+
+            <div>
+              <span>MY HABITS</span>
+            </div>
+
+            <h2>Habit Saya</h2>
+
+          </div>
+
+          <button
+            class="primary-button"
+            id="add-habit-button"
+          >
+            + Tambah Habit
+          </button>
+
+        </div>
+
+
+        <div
+          class="habit-list"
+          id="habit-list"
+        >
+
+          <p class="loading-text">
+            Memuat habit...
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- HABIT MODAL -->
+
+  <div
+    class="modal-overlay hidden"
+    id="habit-modal"
+  >
+
+    <div class="modal-card">
+
+      <div class="modal-header">
+
+        <div>
+
+          <span class="modal-label">
+            HABIT
+          </span>
+
+          <h2 id="modal-title">
+            Tambah Habit
+          </h2>
+
+        </div>
+
+        <button
+          type="button"
+          class="modal-close"
+          id="close-modal"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="habit-form">
+
+        <input
+          type="hidden"
+          id="habit-id"
+        >
+
+
+        <div class="form-group">
+
+          <label for="habit-name">
+            Nama Habit
+          </label>
+
+          <input
+            type="text"
+            id="habit-name"
+            placeholder="Contoh: Membaca buku"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="habit-description">
+            Deskripsi
+          </label>
+
+          <textarea
+            id="habit-description"
+            placeholder="Deskripsi habit"
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="habit-category">
+            Kategori
+          </label>
+
+          <select id="habit-category">
+
+            <option value="">
+              Tanpa kategori
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="habit-target">
+              Target
+            </label>
+
+            <input
+              type="number"
+              id="habit-target"
+              min="1"
+              value="1"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="habit-frequency">
+              Frekuensi
+            </label>
+
+            <select id="habit-frequency">
+
+              <option value="daily">
+                Daily
+              </option>
+
+              <option value="weekly">
+                Weekly
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="form-group"
+          id="status-group"
+          style="display: none;"
+        >
+
+          <label for="habit-status">
+            Status
+          </label>
+
+          <select id="habit-status">
+
+            <option value="active">
+              Active
+            </option>
+
+            <option value="inactive">
+              Inactive
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <p
+          id="habit-message"
+          class="message"
+        ></p>
+
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="secondary-button"
+            id="cancel-modal"
+          >
+            Batal
+          </button>
+
+          <button
+            type="submit"
+            class="primary-button"
+          >
+            Simpan Habit
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <script src="dashboard.js?v=4"></script>
+
+</body>
+</html>
