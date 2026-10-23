@@ -2550,3 +2550,100 @@ button {
   }
 
 }
+
+
+/* =====================================================
+   MONTHLY PROGRESS
+===================================================== */
+
+.monthly-progress-section {
+  margin-bottom: 35px;
+}
+
+.monthly-progress-section .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.monthly-progress-section .section-header h2 {
+  font-size: 20px;
+}
+
+.monthly-progress-section .section-header input {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--white);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+
+.monthly-progress-section .section-header input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+.monthly-progress-card {
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.monthly-progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.monthly-progress-info span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.monthly-progress-info strong {
+  color: var(--primary);
+  font-size: 28px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  background: #eeeaf7;
+  border-radius: 999px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--primary);
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.monthly-progress-card p {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .monthly-progress-card {
+    padding: 18px;
+  }
+
+  .monthly-progress-section .section-header input {
+    width: 100%;
+  }
+}
+

@@ -1,3 +1,4 @@
+
 const API = "/api";
 
 // =========================
@@ -14,45 +15,27 @@ async function apiFetch(url, options = {}) {
     }
   });
 
-  const data = await response
-    .json()
-    .catch(() => ({}));
+  const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(
-      data.message || "Terjadi kesalahan"
-    );
+    throw new Error(data.message || "Terjadi kesalahan");
   }
 
   return data;
 }
 
-
 // =========================
 // ELEMENTS
 // =========================
 
-const userName =
-  document.getElementById("user-name");
+const userName = document.getElementById("user-name");
+const userRole = document.getElementById("user-role");
+const userAvatar = document.getElementById("user-avatar");
 
-const userRole =
-  document.getElementById("user-role");
-
-const userAvatar =
-  document.getElementById("user-avatar");
-
-const historyDate =
-  document.getElementById("history-date");
-
-const historyList =
-  document.getElementById("history-list");
-
-const historyMessage =
-  document.getElementById("history-message");
-
-const resetDate =
-  document.getElementById("reset-date");
-
+const historyDate = document.getElementById("history-date");
+const historyList = document.getElementById("history-list");
+const historyMessage = document.getElementById("history-message");
+const resetDate = document.getElementById("reset-date");
 
 // =========================
 // LOAD USER
@@ -60,45 +43,27 @@ const resetDate =
 
 async function loadUser() {
   try {
-    const data =
-      await apiFetch("/auth/me");
+    const data = await apiFetch("/auth/me");
+    const user = data.user;
 
-    const user =
-      data.user;
-
-    userName.textContent =
-      user.name;
-
+    userName.textContent = user.name;
     userRole.textContent =
-      user.role === "admin"
-        ? "Administrator"
-        : "User";
+      user.role === "admin" ? "Administrator" : "User";
 
-    userAvatar.textContent =
-      user.name
-        .charAt(0)
-        .toUpperCase();
-
+    userAvatar.textContent = user.name.charAt(0).toUpperCase();
   } catch (error) {
-    window.location.href =
-      "/index.html";
+    window.location.href = "/index.html";
   }
 }
-
 
 // =========================
 // NORMALIZE DATE
 // =========================
 
 function getDateOnly(value) {
-  if (!value) {
-    return "";
-  }
-
-  return String(value)
-    .substring(0, 10);
+  if (!value) return "";
+  return String(value).substring(0, 10);
 }
-
 
 // =========================
 // LOAD HISTORY
@@ -106,118 +71,52 @@ function getDateOnly(value) {
 
 async function loadHistory() {
   historyList.innerHTML = `
-    <p class="loading-text">
-      Memuat riwayat...
-    </p>
+    <p class="loading-text">Memuat riwayat...</p>
   `;
 
   historyMessage.textContent = "";
 
   try {
-    const data =
-      await apiFetch("/habit-logs");
+    const data = await apiFetch("/habit-logs");
+    let logs = data.logs || [];
 
-    let logs =
-      data.logs || [];
-
-
-    // =========================
-    // FILTER TANGGAL
-    // =========================
-
+    // Filter tanggal yang dipilih.
     if (historyDate.value) {
       logs = logs.filter(log => {
-        const logDate =
-          getDateOnly(log.log_date);
-
-        return logDate ===
-          historyDate.value;
+        return getDateOnly(log.log_date) === historyDate.value;
       });
     }
 
-
-    // =========================
-    // URUTKAN TERBARU
-    // =========================
-
+    // Urutkan dari tanggal terbaru.
     logs.sort((a, b) => {
-      const dateA =
-        getDateOnly(a.log_date);
-
-      const dateB =
-        getDateOnly(b.log_date);
-
-      return dateB.localeCompare(dateA);
+      return getDateOnly(b.log_date)
+        .localeCompare(getDateOnly(a.log_date));
     });
-
-
-    // =========================
-    // KOSONG
-    // =========================
 
     if (logs.length === 0) {
       historyList.innerHTML = `
         <div class="empty-state">
-
-          <div class="empty-icon">
-            ▣
-          </div>
-
-          <h3>
-            Belum ada riwayat
-          </h3>
-
+          <div class="empty-icon">▣</div>
+          <h3>Belum ada riwayat</h3>
           <p>
-            Belum ada aktivitas pada
-            tanggal yang dipilih.
+            Belum ada aktivitas pada tanggal yang dipilih.
           </p>
-
         </div>
       `;
-
       return;
     }
 
-
-    // =========================
-    // TAMPILKAN DATA
-    // =========================
-
-    historyList.innerHTML = "";
+    const fragment = document.createDocumentFragment();
 
     logs.forEach(log => {
-      const card =
-        document.createElement("div");
+      const card = document.createElement("div");
+      card.className = "history-card";
 
-      card.className =
-        "history-card";
-
-
-      const completed =
-        log.status === "completed";
-
-
-      const statusText =
-        completed
-          ? "Selesai"
-          : "Skipped";
-
-
-      const statusClass =
-        completed
-          ? "completed"
-          : "skipped";
-
-
-      const icon =
-        completed
-          ? "✓"
-          : "×";
-
-
-      const dateText =
-        formatDate(log.log_date);
-
+      const completed = log.status === "completed";
+      const statusText = completed ? "Selesai" : "Skipped";
+      const statusClass = completed ? "completed" : "skipped";
+      const icon = completed ? "✓" : "×";
+      const dateText = formatDate(log.log_date);
 
       card.innerHTML = `
         <div class="history-icon ${statusClass}">
@@ -225,25 +124,13 @@ async function loadHistory() {
         </div>
 
         <div class="history-info">
-
-          <h3>
-            ${escapeHtml(
-              log.habit_name ||
-              "Habit"
-            )}
-          </h3>
-
+          <h3>${escapeHtml(log.habit_name || "Habit")}</h3>
           <p>
             ${escapeHtml(
-              log.habit_description ||
-              "Tidak ada deskripsi"
+              log.habit_description || "Tidak ada deskripsi"
             )}
           </p>
-
-          <small>
-            ${dateText}
-          </small>
-
+          <small>${dateText}</small>
         </div>
 
         <div class="history-status ${statusClass}">
@@ -251,106 +138,61 @@ async function loadHistory() {
         </div>
       `;
 
-      historyList.appendChild(card);
+      fragment.appendChild(card);
     });
 
+    historyList.replaceChildren(fragment);
   } catch (error) {
     historyList.innerHTML = `
       <div class="empty-state">
-
-        <div class="empty-icon">
-          !
-        </div>
-
-        <h3>
-          Gagal memuat riwayat
-        </h3>
-
-        <p>
-          ${escapeHtml(error.message)}
-        </p>
-
+        <div class="empty-icon">!</div>
+        <h3>Gagal memuat riwayat</h3>
+        <p>${escapeHtml(error.message)}</p>
       </div>
     `;
 
-    console.error(error);
+    console.error("Gagal memuat riwayat:", error);
   }
 }
-
 
 // =========================
 // FORMAT DATE
 // =========================
 
 function formatDate(value) {
-  const dateOnly =
-    getDateOnly(value);
+  const dateOnly = getDateOnly(value);
 
-  if (!dateOnly) {
-    return value;
-  }
+  if (!dateOnly) return value;
 
-  const parts =
-    dateOnly.split("-");
+  const parts = dateOnly.split("-");
 
-  if (parts.length !== 3) {
-    return value;
-  }
+  if (parts.length !== 3) return value;
 
-  const year =
-    Number(parts[0]);
+  const year = Number(parts[0]);
+  const month = Number(parts[1]);
+  const day = Number(parts[2]);
 
-  const month =
-    Number(parts[1]);
+  if (!year || !month || !day) return value;
 
-  const day =
-    Number(parts[2]);
+  // Gunakan tanggal lokal untuk mencegah pergeseran hari.
+  const date = new Date(year, month - 1, day);
 
-
-  if (
-    !year ||
-    !month ||
-    !day
-  ) {
-    return value;
-  }
-
-
-  // Buat tanggal sebagai LOCAL DATE,
-  // bukan UTC, agar tidak bergeser +1 hari.
-  const date =
-    new Date(
-      year,
-      month - 1,
-      day
-    );
-
-
-  return date.toLocaleDateString(
-    "id-ID",
-    {
-      day: "2-digit",
-      month: "long",
-      year: "numeric"
-    }
-  );
+  return date.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
 }
-
 
 // =========================
 // ESCAPE HTML
 // =========================
 
 function escapeHtml(value) {
-  const div =
-    document.createElement("div");
-
-  div.textContent =
-    value;
-
+  const div = document.createElement("div");
+  div.textContent = value;
   return div.innerHTML;
 }
-
 
 // =========================
 // LOGOUT
@@ -358,58 +200,40 @@ function escapeHtml(value) {
 
 async function logout() {
   try {
-    await apiFetch(
-      "/auth/logout",
-      {
-        method: "POST"
-      }
-    );
-
+    await apiFetch("/auth/logout", {
+      method: "POST"
+    });
   } catch (error) {
     console.error(error);
   }
 
-  window.location.href =
-    "/index.html";
+  window.location.href = "/index.html";
 }
-
 
 // =========================
 // EVENTS
 // =========================
 
-historyDate.addEventListener(
-  "change",
-  loadHistory
-);
+historyDate.addEventListener("change", loadHistory);
 
-
-resetDate.addEventListener(
-  "click",
-  () => {
-    historyDate.value = "";
-
-    loadHistory();
-  }
-);
-
+resetDate.addEventListener("click", () => {
+  historyDate.value = "";
+  loadHistory();
+});
 
 document
   .getElementById("logout-button")
-  .addEventListener(
-    "click",
-    logout
-  );
-
+  .addEventListener("click", logout);
 
 // =========================
 // INITIAL LOAD
 // =========================
 
 async function init() {
-  await loadUser();
-
-  await loadHistory();
+  await Promise.all([
+    loadUser(),
+    loadHistory()
+  ]);
 }
 
 init();

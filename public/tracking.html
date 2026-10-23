@@ -1,203 +1,92 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Tracking - Habit Tracker</title>
-
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
-
 <body>
-
   <div class="app-layout">
-
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
-
     <aside class="sidebar">
-
       <div class="sidebar-brand">
-
-        <div class="brand-icon">
-          H
-        </div>
-
+        <div class="brand-icon">H</div>
         <div>
           <h2>Habit Tracker</h2>
           <span>Build better habits</span>
         </div>
-
       </div>
-
 
       <nav class="sidebar-nav">
-
         <a href="dashboard.html" class="nav-item">
-          <span>⌂</span>
-          Dashboard
+          <span>⌂</span> Dashboard
         </a>
-
         <a href="tracking.html" class="nav-item active">
-          <span>✓</span>
-          Tracking
+          <span>✓</span> Tracking
         </a>
-
-        <a href="#" class="nav-item" id="history-nav">
-          <span>▣</span>
-          Riwayat
+        <a href="history.html" class="nav-item">
+          <span>▣</span> Riwayat
         </a>
-
-        <a href="#" class="nav-item" id="category-nav">
-          <span>◆</span>
-          Kategori
+        <a href="category.html" class="nav-item" id="category-nav">
+          <span>◆</span> Kategori
         </a>
-
-        <a href="#" class="nav-item" id="profile-nav">
-          <span>●</span>
-          Profil
+        <a href="profile.html" class="nav-item" id="profile-nav">
+          <span>●</span> Profil
         </a>
-
+        <a href="admin.html" class="nav-item" id="admin-nav">
+          <span>⚙</span> Admin
+        </a>
       </nav>
 
-
       <div class="sidebar-bottom">
-
-        <button
-          class="logout-button"
-          id="logout-button"
-        >
+        <button type="button" class="logout-button" id="logout-button">
           Logout
         </button>
-
       </div>
-
     </aside>
 
-
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
-
     <main class="main-content">
-
-      <!-- TOPBAR -->
-
       <header class="topbar">
-
         <div>
-
-          <div class="page-label">
-            HABIT TRACKER
-          </div>
-
-          <h1>Tracking</h1>
-
+          <div class="page-label">DAILY TRACKING</div>
+          <h1>Tracking Kebiasaan</h1>
         </div>
-
 
         <div class="user-mini">
-
-          <div
-            class="user-avatar"
-            id="user-avatar"
-          >
-            N
-          </div>
-
+          <div class="user-avatar" id="user-avatar">N</div>
           <div>
-
-            <strong id="user-name">
-              Loading...
-            </strong>
-
-            <span id="user-role">
-              User
-            </span>
-
+            <strong id="user-name">Loading...</strong>
+            <span id="user-role">User</span>
           </div>
-
         </div>
-
       </header>
 
-
-      <!-- =========================
-           TRACKING HEADER
-      ========================== -->
-
-      <section class="tracking-header">
-
-        <div>
-
-          <span class="section-label">
-            DAILY TRACKING
-          </span>
-
-          <h2>Catat Kebiasaan Hari Ini</h2>
-
-          <p>
-            Tandai setiap habit setelah kamu menyelesaikannya.
-          </p>
-
+      <section class="habit-section">
+        <div class="section-title">
+          <div>
+            <span>MY ROUTINE</span>
+            <h2>Kebiasaan Hari Ini</h2>
+          </div>
         </div>
 
-
-        <div class="date-picker">
-
-          <label for="tracking-date">
-            Tanggal
-          </label>
-
-          <input
-            type="date"
-            id="tracking-date"
-          >
-
+        <div class="tracking-filter">
+          <div class="form-group">
+            <label for="tracking-date">Tanggal tracking</label>
+            <input type="date" id="tracking-date">
+          </div>
         </div>
 
+        <p id="tracking-message" class="message"></p>
+
+        <div class="tracking-list" id="tracking-list">
+          <p class="loading-text">Memuat habit...</p>
+        </div>
       </section>
-
-
-      <!-- =========================
-           MESSAGE
-      ========================== -->
-
-      <p
-        id="tracking-message"
-        class="tracking-message"
-      ></p>
-
-
-      <!-- =========================
-           HABIT LIST
-      ========================== -->
-
-      <section class="tracking-section">
-
-        <div
-          id="tracking-list"
-          class="tracking-list"
-        >
-
-          <p class="loading-text">
-            Memuat habit...
-          </p>
-
-        </div>
-
-      </section>
-
     </main>
-
   </div>
 
-
-  <script src="tracking.js?v=1"></script>
-
+  <script src="tracking.js"></script>
 </body>
-
 </html>
+```

@@ -1,233 +1,119 @@
+
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Kategori - Habit Tracker</title>
-
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
-
 <body>
-
   <div class="app-layout">
 
-    <!-- SIDEBAR -->
-
     <aside class="sidebar">
-
       <div class="sidebar-brand">
-
-        <div class="brand-icon">
-          H
-        </div>
-
+        <div class="brand-icon">H</div>
         <div>
           <h2>Habit Tracker</h2>
           <span>Build better habits</span>
         </div>
-
       </div>
-
 
       <nav class="sidebar-nav">
-
         <a href="dashboard.html" class="nav-item">
-          <span>⌂</span>
-          Dashboard
+          <span>⌂</span> Dashboard
         </a>
-
         <a href="tracking.html" class="nav-item">
-          <span>✓</span>
-          Tracking
+          <span>✓</span> Tracking
         </a>
-
         <a href="history.html" class="nav-item">
-          <span>▣</span>
-          Riwayat
+          <span>▣</span> Riwayat
         </a>
-
-        <a href="category.html" class="nav-item active">
-          <span>◆</span>
-          Kategori
+        <a href="category.html" class="nav-item active" id="category-nav">
+          <span>◆</span> Kategori
         </a>
-
-        <a href="#" class="nav-item" id="profile-nav">
-          <span>●</span>
-          Profil
+        <a href="profile.html" class="nav-item" id="profile-nav">
+          <span>●</span> Profil
         </a>
-
+        <a href="admin.html" class="nav-item" id="admin-nav">
+          <span>⚙</span> Admin
+        </a>
       </nav>
 
-
       <div class="sidebar-bottom">
-
-        <button
-          class="logout-button"
-          id="logout-button"
-        >
+        <button class="logout-button" id="logout-button">
           Logout
         </button>
-
       </div>
-
     </aside>
 
-
-    <!-- MAIN -->
-
     <main class="main-content">
-
       <header class="topbar">
-
         <div>
-
-          <div class="page-label">
-            HABIT TRACKER
-          </div>
-
-          <h1>Kategori</h1>
-
+          <div class="page-label">HABIT ORGANIZATION</div>
+          <h1>Manajemen Kategori</h1>
         </div>
-
 
         <div class="user-mini">
-
-          <div
-            class="user-avatar"
-            id="user-avatar"
-          >
-            N
-          </div>
-
+          <div class="user-avatar" id="user-avatar">N</div>
           <div>
-
-            <strong id="user-name">
-              Loading...
-            </strong>
-
-            <span id="user-role">
-              User
-            </span>
-
+            <strong id="user-name">Loading...</strong>
+            <span id="user-role">User</span>
           </div>
-
         </div>
-
       </header>
 
+      <section class="habit-section">
+        <div class="habit-title">
+          <div class="section-title">
+            <div>
+              <span>MY CATEGORIES</span>
+              <h2>Kategori Habit</h2>
+            </div>
+          </div>
 
-      <!-- CATEGORY HEADER -->
-
-      <section class="category-header">
-
-        <div>
-
-          <span class="section-label">
-            HABIT CATEGORY
-          </span>
-
-          <h2>Kategori Habit</h2>
-
-          <p>
-            Kelompokkan habit agar lebih mudah dikelola.
-          </p>
-
+          <button
+            type="button"
+            class="primary-button"
+            id="add-category-button"
+          >
+            + Tambah Kategori
+          </button>
         </div>
 
+        <p id="category-message" class="message"></p>
 
-        <button
-          type="button"
-          class="primary-button"
-          id="add-category-button"
-        >
-          + Tambah Kategori
-        </button>
-
-      </section>
-
-
-      <!-- MESSAGE -->
-
-      <p
-        id="category-message"
-        class="category-message"
-      ></p>
-
-
-      <!-- CATEGORY LIST -->
-
-      <section>
-
-        <div
-          id="category-list"
-          class="category-list"
-        >
-
-          <p class="loading-text">
-            Memuat kategori...
-          </p>
-
+        <div class="category-list" id="category-list">
+          <p class="loading-text">Memuat kategori...</p>
         </div>
-
       </section>
-
     </main>
-
   </div>
 
-
-  <!-- CATEGORY MODAL -->
-
-  <div
-    class="modal-overlay hidden"
-    id="category-modal"
-  >
-
+  <!-- Modal tambah dan edit kategori -->
+  <div class="modal-overlay hidden" id="category-modal">
     <div class="modal-card">
-
       <div class="modal-header">
-
         <div>
-
-          <span class="modal-label">
-            CATEGORY
-          </span>
-
-          <h2 id="category-modal-title">
-            Tambah Kategori
-          </h2>
-
+          <span class="modal-label">CATEGORY</span>
+          <h2 id="category-modal-title">Tambah Kategori</h2>
         </div>
-
 
         <button
           type="button"
           class="modal-close"
           id="close-category-modal"
+          aria-label="Tutup modal"
         >
           ×
         </button>
-
       </div>
 
-
       <form id="category-form">
-
-        <input
-          type="hidden"
-          id="category-id"
-        >
-
+        <input type="hidden" id="category-id">
 
         <div class="form-group">
-
-          <label for="category-name">
-            Nama Kategori
-          </label>
-
+          <label for="category-name">Nama Kategori</label>
           <input
             type="text"
             id="category-name"
@@ -235,18 +121,11 @@
             maxlength="100"
             required
           >
-
         </div>
 
-
-        <p
-          id="category-form-message"
-          class="message"
-        ></p>
-
+        <p id="category-form-message" class="message"></p>
 
         <div class="modal-actions">
-
           <button
             type="button"
             class="secondary-button"
@@ -255,24 +134,14 @@
             Batal
           </button>
 
-          <button
-            type="submit"
-            class="primary-button"
-          >
+          <button type="submit" class="primary-button">
             Simpan Kategori
           </button>
-
         </div>
-
       </form>
-
     </div>
-
   </div>
 
-
-  <script src="category.js?v=1"></script>
-
+  <script src="category.js"></script>
 </body>
-
 </html>
